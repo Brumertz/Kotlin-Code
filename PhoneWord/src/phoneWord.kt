@@ -1,6 +1,6 @@
 fun main() {
     print("Enter phone number: ")
-    val input = readLine()?.uppercase() ?: ""
+    val input = readln().uppercase() ?: ""
     val numericPhoneNumber = convertToNumeric(input)
     println(numericPhoneNumber)
 }
