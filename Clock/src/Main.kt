@@ -1,34 +1,62 @@
 fun main() {
-    val clockData = ClockData()
-    val clock = Clock(clockData)
-    var running = true
+    val clock = Clock()  // Default clock (0:0:0)
 
-    while (running) {
+    println("Welcome to the Simple Clock Program")
+
+    while (true) {
         clock.displayTime()
+
         println("Enter 's' to set the time.")
         println("Enter 'a' to advance one second.")
         println("Enter 'r' to reset the clock.")
         println("Enter 'q' to quit.")
+        print("Your choice: ")
 
-        when (readln().lowercase()) {
+        when (readlnOrNull()?.lowercase()) {
             "s" -> {
                 println("Now you can set the clock")
-                print("Enter hour (0 ~ 23): ")
-                val h = readln().toIntOrNull() ?: 0
-                print("Enter minute (0 ~ 59): ")
-                val m = readln().toIntOrNull() ?: 0
-                print("Enter second (0 ~ 59): ")
-                val s = readln().toIntOrNull() ?: 0
 
-                clock.setTime(h, m, s)
+                // Get valid inputs from the user for hour, minute, and second.
+                val hour = getIntInput("Enter hour (0 ~ 23): ", 0..23)
+                val minute = getIntInput("Enter minute (0 ~ 59): ", 0..59)
+                val second = getIntInput("Enter second (0 ~ 59): ", 0..59)
+
+                // Set the time using the Clock class method.
+                clock.setTime(hour, minute, second)
             }
-            "a" -> clock.advance()
-            "r" -> clock.reset()
+
+            "a" -> {
+                // Advance the clock by one second
+                clock.advOneSecond()  // Corrected method name to match the class definition
+            }
+
+            "r" -> {
+                // Reset the clock
+                clock.reset()
+                println("The clock has been reset.")
+            }
+
             "q" -> {
-                running = false
-                println("Goodbye!")
+                // Exit the program
+                println("Exiting program. Goodbye!")
+                return
             }
-            else -> println("Invalid input. Try again.")
+
+            else -> println("Invalid option. Please try again.")
+        }
+    }
+}
+
+// Function to get integer input within a specified range
+fun getIntInput(prompt: String, range: IntRange): Int {
+    while (true) {
+        print(prompt)
+        val input = readlnOrNull()?.toIntOrNull() // Convert input to Int?
+
+        if (input != null && input in range) { // Now input is an Int
+            return input
+        } else {
+            println("Invalid input. Please enter a number between ${range.first} and ${range.last}.")
         }
     }
 }

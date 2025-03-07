@@ -1,64 +1,76 @@
+// test clock.kt
 package test
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import Clock
-import ClockData  // Ensure you import ClockData
 
 class ClockTest {
 
     @Test
     fun testDefaultConstructor() {
-        val clockData = ClockData()  // Create ClockData instance
-        val clock = Clock(clockData)
+        // Create a clock instance using the default constructor
+        val clock = Clock()
 
-        assertEquals(0, clockData.hour)
-        assertEquals(0, clockData.minute)
-        assertEquals(0, clockData.second)
+        // Assert the default time is 0:0:0
+        assertEquals(0, clock.hour)
+        assertEquals(0, clock.minute)
+        assertEquals(0, clock.second)
     }
 
     @Test
     fun testAdvanceSecond() {
-        val clockData = ClockData(23, 59, 59)
-        val clock = Clock(clockData)
-        clock.advance()
+        // Create a clock instance with a specific time (23:59:59)
+        val clock = Clock(23, 59, 59)
 
-        assertEquals(0, clockData.hour)
-        assertEquals(0, clockData.minute)
-        assertEquals(0, clockData.second)
+        // Advance the clock by one second
+        clock.advOneSecond()
+
+        // Assert that the clock has reset to 0:0:0 after advancing by one second
+        assertEquals(0, clock.hour)
+        assertEquals(0, clock.minute)
+        assertEquals(0, clock.second)
     }
 
     @Test
     fun testSetValidTime() {
-        val clockData = ClockData()
-        val clock = Clock(clockData)
+        // Create a clock instance using the default constructor
+        val clock = Clock()
+
+        // Set a valid time (10:15:30)
         clock.setTime(10, 15, 30)
 
-        assertEquals(10, clockData.hour)
-        assertEquals(15, clockData.minute)
-        assertEquals(30, clockData.second)
+        // Assert that the time is correctly set
+        assertEquals(10, clock.hour)
+        assertEquals(15, clock.minute)
+        assertEquals(30, clock.second)
     }
 
     @Test
     fun testSetInvalidTime() {
-        val clockData = ClockData(12, 30, 45)
-        val clock = Clock(clockData)
-        clock.setTime(25, 70, 80)  // Invalid input
+        // Create a clock instance with an initial time (12:30:45)
+        val clock = Clock(12, 30, 45)
 
-        // The time should not change
-        assertEquals(12, clockData.hour)
-        assertEquals(30, clockData.minute)
-        assertEquals(45, clockData.second)
+        // Attempt to set an invalid time (25:70:80)
+        clock.setTime(25, 70, 80)
+
+        // Assert that the time should remain unchanged
+        assertEquals(12, clock.hour)
+        assertEquals(30, clock.minute)
+        assertEquals(45, clock.second)
     }
 
     @Test
     fun testResetClock() {
-        val clockData = ClockData(12, 30, 45)
-        val clock = Clock(clockData)
+        // Create a clock instance with a specific time (12:30:45)
+        val clock = Clock(12, 30, 45)
+
+        // Reset the clock
         clock.reset()
 
-        assertEquals(0, clockData.hour)
-        assertEquals(0, clockData.minute)
-        assertEquals(0, clockData.second)
+        // Assert that the clock has been reset to 0:0:0
+        assertEquals(0, clock.hour)
+        assertEquals(0, clock.minute)
+        assertEquals(0, clock.second)
     }
 }
