@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Eggs Counter</string>
+    <string name="calculate_button_text">Calculate</string>
+    <string name="egg_count_result_format">Gross: %1$d, Dozen: %2$d, Unit: %3$d</string>
+</resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textColor="#000000" />
+
+    <!-- Input field for eggs count -->
+    <EditText
+        android:id="@+id/inputEggs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="310dp"
+        android:contentDescription="Input for egg count"
+        android:hint="Enter egg count"
+        android:importantForAccessibility="yes"
+        android:inputType="number"
+        android:padding="16dp"
+        android:textSize="18sp" />
+
+    <!-- Button to calculate -->
+    <Button
+        android:id="@+id/calculateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inputEggs"
+        android:layout_marginTop="100dp"
+        android:contentDescription="Button to calculate the egg count"
+        android:importantForAccessibility="yes"
+        android:padding="16dp"
+        android:text="Calculate"
+        android:textSize="18sp" />
+    <!-- Result text -->
+
+    <TextView
+        android:id="@+id/resultText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calculateButton"
+        android:layout_marginTop="44dp"
+        android:contentDescription="Displays the result of egg count calculation"
+        android:gravity="center"
+        android:importantForAccessibility="yes"
+        android:text=""
+        android:textSize="18sp" />
+
+</RelativeLayout>
